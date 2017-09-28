@@ -6,6 +6,7 @@ Home-page: http://develop.aliyun.com/sdk/python
 Author: Aliyun
 Author-email: aliyun-developers-efficiency@list.alibaba-inc.com
 License: Apache
+Description-Content-Type: UNKNOWN
 Description: ======================
         aliyun-python-sdk-core
         ======================
