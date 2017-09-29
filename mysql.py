@@ -9,7 +9,7 @@ db = MySQLdb.connect(host="115.159.157.37", user="root",
 cursor = db.cursor()
 
 # SQL 查询语句
-sql = "SELECT * FROM application"
+sql = "SELECT `name`,`phone` FROM application ORDER BY rand()"
 
 # 执行SQL语句
 cursor.execute(sql)
@@ -17,9 +17,10 @@ cursor.execute(sql)
 # 获取所有记录列表
 results = cursor.fetchall()
 
-print type(results)
+print results
+print list(results)
 
-for row in results:
-    name = row[1]
-    tel = row[5]
-    print name,tel
+# for row in results:
+#     name = row[0]
+#     tel = row[1]
+#     print name,tel

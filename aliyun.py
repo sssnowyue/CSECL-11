@@ -31,10 +31,3 @@ def send_sms(business_id, phone_number, sign_name, template_code, template_param
     # 发送请求
     smsResponse = acs_client.do_action_with_exception(smsRequest)
     return smsResponse
-
-
-__business_id = uuid.uuid1()
-print __business_id
-params = "{\"code\":\"1234\"}"
-print send_sms(__business_id, '13975659747', "SSSNOW用车", "SMS_78560123", params)
-# print send_sms(__business_id, "1500000000", "云通信产品", "SMS_000000", params)
