@@ -1,10 +1,8 @@
-try:
-    import cPickle as pickle
-except ImportError:
-    import pickle
-with open('order.txt', 'rb') as f:
-    try:
-        d = pickle.load(f)
-        print d
-    except EOFError:
-        print "jjjj"
+# -*- coding: utf-8 -*-
+def a(x):
+    if x==1 or x==2:
+        print "jjj"
+    else:
+        print "kkk"
+
+a(3)

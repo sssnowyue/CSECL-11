@@ -13,7 +13,7 @@ db = MySQLdb.connect(host="115.159.157.37", user="root",
 cursor = db.cursor()
 
 # SQL 查询语句
-sql = "SELECT `name`,`phone` FROM application ORDER BY rand()"
+sql = "SELECT `name`,`phone`,`email`,`direct` FROM application ORDER BY rand()"
 
 # 执行SQL语句
 cursor.execute(sql)
