@@ -34,11 +34,11 @@ for y in range(len(data)):
         if x == 4:
             ws.write(y + 1, x-1, changeTime(data[y][x]))
         elif x == 1:
-            ws.write(y + 1, x + 1, (data[y][x]).decode("UTF-8"))
+            ws.write(y + 1, x + 1, data[y][x])
         elif x == 3:
-            ws.write(y + 1, x - 2, (data[y][x]).decode("UTF-8"))
+            ws.write(y + 1, x - 2, data[y][x])
         elif x == 0:
-            ws.write(y + 1, x, (data[y][x]).decode("UTF-8"))
+            ws.write(y + 1, x, data[y][x])
         else:
             pass
 

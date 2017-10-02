@@ -33,32 +33,40 @@ def gettxt():
 data = gettxt()
 sendFail1 = list()
 sendFail = list()
+
 for info in data:
     name = info[0]
     tel = str(info[1])
     inTime = changeTime(info[4])
     status = sendSms(name, tel, inTime)
-    print name,tel,"OK"
+    print name, tel, status
     time.sleep(10)
     if status != "OK":
         sendFail1.append([name, tel, inTime])
 
 if sendFail1 == list():
+    print "...................................."
     print "第一次发送全部成功！！！"
 else:
+    print "...................................."
+    print "第一次发送失败重新发送中......"
     for info in sendFail1:
         name = info[0]
         tel = str(info[1])
-        inTime = changeTime(info[4])
+        inTime = info[2]
         status = sendSms(name, tel, inTime)
-        print name,tel,"OK"
+        print name, tel, status
         time.sleep(10)
         if status != "OK":
             sendFail.append([name, tel, inTime])
+del sendFail1
 
 if sendFail == list():
+    print "...................................."
     print "第二次发送全部成功"
 else:
+    print "...................................."
     print "短信发送失败报名者："
     for info in sendFail:
-        print info[0], info[2], str(info[1]), changeTime(info[3])
+        print info[0], str(info[1]), info[2]
+del sendFail

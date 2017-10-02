@@ -4,7 +4,7 @@ import MySQLdb
 
 # 打开数据库连接
 db = MySQLdb.connect(host="115.159.157.37", user="root",
-                     db="csecl", passwd="ct-sch", port=3306)
+                     db="csecl", passwd="ct-sch", port=3306,charset='utf8')
 
 # 使用cursor()方法获取操作游标
 cursor = db.cursor()
@@ -34,7 +34,7 @@ y1 = 1
 y2 = 1
 y3 = 1
 for info in results:
-    if info[0] == "程序":
+    if info[0] == u"程序":
         for x in range(11):
             if x == 8 or x == 9:
                 ws1.write(y1, x, info[x + 1])
@@ -44,9 +44,9 @@ for info in results:
                 else:
                     ws1.write(y1, x, u"女")
             else:
-                ws1.write(y1, x, (info[x + 1]).decode("UTF-8"))
+                ws1.write(y1, x, info[x + 1])
         y1 += 1
-    elif info[0] == "前端":
+    elif info[0] == u"前端":
         for x in range(11):
             if x == 8 or x == 9:
                 ws2.write(y2, x, info[x + 1])
@@ -56,9 +56,9 @@ for info in results:
                 else:
                     ws2.write(y2, x, u"女")
             else:
-                ws2.write(y2, x, (info[x + 1]).decode("UTF-8"))
+                ws2.write(y2, x, info[x + 1])
         y2 += 1
-    elif info[0] == "产品":
+    elif info[0] == u"产品":
         for x in range(11):
             if x == 8 or x == 9:
                 ws3.write(y3, x, info[x + 1])
@@ -68,7 +68,7 @@ for info in results:
                 else:
                     ws3.write(y3, x, u"女")
             else:
-                ws3.write(y3, x, (info[x + 1]).decode("UTF-8"))
+                ws3.write(y3, x, info[x + 1])
         y3 += 1
     else:
         print "数据库内方向字段不符合项："

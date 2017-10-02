@@ -7,7 +7,7 @@ except ImportError:
 
 # 打开数据库连接
 db = MySQLdb.connect(host="115.159.157.37", user="root",
-                     db="csecl", passwd="ct-sch", port=3306)
+                     db="csecl", passwd="ct-sch", port=3306,charset='utf8')
 
 # 使用cursor()方法获取操作游标
 cursor = db.cursor()
@@ -20,7 +20,6 @@ cursor.execute(sql)
 
 # 获取所有记录列表
 results = cursor.fetchall()
-
 
 save = list()
 p = 1
@@ -56,3 +55,5 @@ for re in results:
 
 with open('order.txt', 'wb') as f:
     pickle.dump(save, f, True)
+
+print results
