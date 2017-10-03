@@ -40,9 +40,9 @@ data = gettxt()
 sendFail1 = list()
 sendFail = list()
 
-Sender = 'sssnowyue@163.com'
-AuthorizationCode = '1123146105yuyue'
-smtp_server = 'smtp.163.com'
+Sender = u'sssnowyue@163.com'
+AuthorizationCode = u'1123146105yuyue'
+smtp_server = u'smtp.163.com'
 smtpObj = smtplib.SMTP()
 smtpObj.connect(smtp_server, 25)
 smtpObj.login(Sender, AuthorizationCode)
@@ -51,8 +51,8 @@ for info in data:
     name = info[0]
     receiver = info[2]
     inTime = changeTime(info[4]).decode('utf-8')
-    status = send('sssnowyue@163.com', receiver, smtpObj, name, inTime)
-    print name, receiver, status
+    status = send(u'sssnowyue@163.com', receiver, smtpObj, name, inTime)
+    print name, receiver, status.decode('utf-8')
     time.sleep(10)
     if status == u"Fail":
         sendFail1.append([name, receiver, inTime])
@@ -68,7 +68,7 @@ else:
         receiver = info[1]
         inTime = info[2]
         status = send('sssnowyue@163.com', receiver, smtpObj, name, inTime)
-        print name, receiver, status
+        print name, receiver, status.decode('utf-8')
         time.sleep(10)
         if status == u"Fail":
             sendFail.append([name, receiver, inTime])

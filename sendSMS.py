@@ -39,8 +39,8 @@ for info in data:
     tel = info[1].encode('utf-8')
     inTime = changeTime(info[4])
     status = sendSms(name, tel, inTime)
-    print name, tel, status.decode('utf-8')
-    time.sleep(10)
+    print name, tel, status
+    time.sleep(2)
     if status != "OK":
         sendFail1.append([name, tel, inTime])
 
@@ -55,7 +55,7 @@ else:
         tel = info[1]
         inTime = info[2]
         status = sendSms(name, tel, inTime)
-        print name, tel, status.decode('utf-8')
+        print name, tel, status
         time.sleep(10)
         if status != "OK":
             sendFail.append([name, tel, inTime])
