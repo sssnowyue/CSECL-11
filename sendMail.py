@@ -53,8 +53,8 @@ for info in data:
     inTime = changeTime(info[4]).decode('utf-8')
     status = send(u'sssnowyue@163.com', receiver, smtpObj, name, inTime)
     print name.encode('utf-8'), receiver.encode('utf-8'), status
-    time.sleep(10)
-    if status == u"Fail":
+    time.sleep(2)
+    if status == "Fail":
         sendFail1.append([name, receiver, inTime])
 
 if sendFail1 == list():
@@ -70,7 +70,7 @@ else:
         status = send('sssnowyue@163.com', receiver, smtpObj, name, inTime)
         print name.encode('utf-8'), receiver.encode('utf-8'), status
         time.sleep(10)
-        if status == u"Fail":
+        if status == "Fail":
             sendFail.append([name, receiver, inTime])
 del sendFail1
 
