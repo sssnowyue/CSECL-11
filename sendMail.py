@@ -18,9 +18,9 @@ def send(Sender, receiver, smtpObj, name, inTime):
     msg['To'] = receiver
     try:
         smtpObj.sendmail(Sender, receiver, msg.as_string())
-        return "OK"
+        return u"OK"
     except smtplib.SMTPException:
-        return "Fail"
+        return u"Fail"
 
 
 def changeTime(timestamp):
@@ -50,11 +50,11 @@ smtpObj.login(Sender, AuthorizationCode)
 for info in data:
     name = info[0]
     receiver = info[2]
-    inTime = changeTime(info[4])
+    inTime = changeTime(info[4]).decode('utf-8')
     status = send('sssnowyue@163.com', receiver, smtpObj, name, inTime)
     print name, receiver, status
     time.sleep(10)
-    if status == "Fail":
+    if status == u"Fail":
         sendFail1.append([name, receiver, inTime])
 
 if sendFail1 == list():
@@ -70,7 +70,7 @@ else:
         status = send('sssnowyue@163.com', receiver, smtpObj, name, inTime)
         print name, receiver, status
         time.sleep(10)
-        if status == "Fail":
+        if status == u"Fail":
             sendFail.append([name, receiver, inTime])
 del sendFail1
 

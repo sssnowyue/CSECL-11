@@ -35,11 +35,11 @@ sendFail1 = list()
 sendFail = list()
 
 for info in data:
-    name = info[0]
-    tel = str(info[1])
+    name = info[0].encode('utf-8')
+    tel = info[1].encode('utf-8')
     inTime = changeTime(info[4])
     status = sendSms(name, tel, inTime)
-    print name, tel, status
+    print name, tel, status.decode('utf-8')
     time.sleep(10)
     if status != "OK":
         sendFail1.append([name, tel, inTime])
@@ -52,10 +52,10 @@ else:
     print "第一次发送失败重新发送中......"
     for info in sendFail1:
         name = info[0]
-        tel = str(info[1])
+        tel = info[1]
         inTime = info[2]
         status = sendSms(name, tel, inTime)
-        print name, tel, status
+        print name, tel, status.decode('utf-8')
         time.sleep(10)
         if status != "OK":
             sendFail.append([name, tel, inTime])
@@ -68,5 +68,5 @@ else:
     print "...................................."
     print "短信发送失败报名者："
     for info in sendFail:
-        print info[0], str(info[1]), info[2]
+        print info[0], info[1], info[2]
 del sendFail
