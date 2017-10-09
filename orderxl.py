@@ -30,7 +30,7 @@ for i in range(len(title)):
 
 data = gettxt()
 for y in range(len(data)):
-    for x in range(4):
+    for x in range(5):
         if x == 4:
             ws.write(y + 1, x-1, changeTime(data[y][x]))
         elif x == 1:
