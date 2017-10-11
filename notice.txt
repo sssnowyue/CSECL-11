@@ -1,6 +1,4 @@
-# 运行mysql.py--->产生面试顺序
-# 运行orderxl.py--->导出面试顺序excel
-# 运行sendMail.py--->按面试顺序发邮件 存在报错
-# 运行sendSMS.py--->按面试顺序发短信 存在报错
-
 # 运行xl.py--->导出基本数据 存在报错
+# 运行orderxl.py--->导出面试顺序excel
+# 运行send.py--->按面试顺序发短信邮件 存在报错
+
