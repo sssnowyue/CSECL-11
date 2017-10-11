@@ -18,7 +18,7 @@ def sendSms(name, tel, inTime):
 
 
 def sendEmail(Sender, receiver, smtpObj, name, code, inTime):
-    text = name + u'同学，你好！，你的编号为' + code + '（请牢记编号），请于' + inTime + \
+    text = name + u'同学，你好！，你的编号为' + code + u'（请牢记编号），请于' + inTime + \
         u'到13教509参加面试，请提前15分钟到场，收到后请在［CSECL-11招新］群（672099668）查看面试详尽并在群内回复（11+方向+姓名+已收到面试通知），谢谢！'
     msg = MIMEText(text, 'plain', 'utf-8')
     msg['Subject'] = Header('互联网创新实验室通知', 'utf-8')
@@ -51,9 +51,9 @@ EmailFail0 = list()
 SMSFail = list()
 EmailFail = list()
 
-for nrow in [table1.nrows, table2.nrows, table3.nrows]:
-    for rownum in range(1, nrow):
-        oneInfo = table2.row_values(rownum)
+for table in [table1, table2, table3]:
+    for rownum in range(1, table.nrows):
+        oneInfo = table.row_values(rownum)
         code = oneInfo[0]
         name = oneInfo[1]
         tel = oneInfo[2]
@@ -70,7 +70,7 @@ for nrow in [table1.nrows, table2.nrows, table3.nrows]:
                                 email, smtpObj, name, code, inTime)
         print name.encode('utf-8'), email.encode('utf-8'), code.encode('utf-8'), inTime.encode('utf-8'), statusEmail
         if statusEmail == "Fail":
-            EmailFail0.append([name, receiver, code, inTime])
+            EmailFail0.append([name, email, code, inTime])
         time.sleep(2)
 
 
@@ -101,14 +101,15 @@ else:
         print info[0].encode('utf-8'), info[1].encode('utf-8'), info[2].encode('utf-8'), info[3].encode('utf-8'), statusEmail
         time.sleep(8)
         if statusEmail == "Fail":
-            EmailFail.append([info[0].encode('utf-8'), info[1].encode('utf-8'), info[2].encode('utf-8'), , info[3].encode('utf-8')])
+            EmailFail.append([info[0].encode('utf-8'), info[1].encode('utf-8'),
+                              info[2].encode('utf-8'), info[3].encode('utf-8')])
 
+print "...................................."
+print "短信发送失败："
 for info in SMSFail:
-    print "...................................."
-    print "短信发送失败："
     print info[0], info[1], info[2]
 
+print "...................................."
+print "邮箱发送失败："
 for info in EmailFail:
-    print "...................................."
-    print "邮箱发送失败："
     print info[0], info[1], info[2], info[3]
