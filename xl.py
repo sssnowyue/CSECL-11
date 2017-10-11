@@ -59,7 +59,7 @@ for info in results:
                 else:
                     ws2.write(y2, x, u"女")
             elif x == 0:
-                code = "A" + str(y2)
+                code = "B" + str(y2)
                 ws2.write(y2, x, code.decode('utf-8'))
             else:
                 ws2.write(y2, x, info[x])
@@ -74,7 +74,7 @@ for info in results:
                 else:
                     ws3.write(y3, x, u"女")
             elif x == 0:
-                code = "A" + str(y3)
+                code = "C" + str(y3)
                 ws3.write(y3, x, code.decode('utf-8'))
             else:
                 ws3.write(y3, x, info[x])

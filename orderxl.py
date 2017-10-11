@@ -35,7 +35,7 @@ for info in results:
     elif info[0] == u"前端":
         for x in range(4):
             if x==0:
-                code = "A" + str(y2)
+                code = "B" + str(y2)
                 ws2.write(y2, x, code.decode('utf-8'))
             else:
                 ws2.write(y2, x, info[x])
@@ -43,7 +43,7 @@ for info in results:
     elif info[0] == u"产品":
         for x in range(4):
             if x==0:
-                code = "A" + str(y3)
+                code = "C" + str(y3)
                 ws3.write(y3, x, code.decode('utf-8'))
             else:
                 ws3.write(y3, x, info[x])
