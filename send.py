@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import traceback
 import xlrd
 import uuid
 import json
@@ -10,10 +11,10 @@ from email.header import Header
 from smtplib import SMTP_SSL
 
 
-def sendSms(name, tel, inTime):
+def sendSms(name, tel, inTime, code):
     __business_id = uuid.uuid1()
-    params = json.dumps({"name": name, "time": inTime})
-    sms_out = send_sms(__business_id, tel, "CSECL实验室", "SMS_100890067", params)
+    params = json.dumps({"name": name, "time": inTime, "code": code})
+    sms_out = send_sms(__business_id, tel, "CSECL实验室", "SMS_103190005", params)
     status = json.loads(sms_out)["Code"]
     return status
 
@@ -29,6 +30,7 @@ def sendEmail(Sender, receiver, smtpObj, name, code, inTime):
         smtpObj.sendmail(Sender, receiver, msg.as_string())
         return "OK"
     except smtplib.SMTPException:
+        print traceback.print_exc()
         return "Fail"
 
 
@@ -42,7 +44,8 @@ def sendQEmail(Sender, receiver, smtpQ, name, code, inTime):
     try:
         smtpQ.sendmail(Sender, receiver, msg.as_string())
         return "OK"
-    except smtpQ.SMTPException:
+    except:
+        print traceback.print_exc()
         return "Fail"
 
 
@@ -82,11 +85,11 @@ for table in [table1, table2, table3]:
         inTime = oneInfo[4]
         # sendSMS
         statusSMS = sendSms(name.encode('utf-8'),
-                            tel.encode('utf-8'), inTime.encode('utf-8'))
-        print name.encode('utf-8'), tel.encode('utf-8'), inTime.encode('utf-8'), statusSMS
+                            tel.encode('utf-8'), inTime.encode('utf-8'), code.encode('utf-8'))
+        print name.encode('utf-8'), tel.encode('utf-8'), code.encode('utf-8'), inTime.encode('utf-8'), statusSMS
         if statusSMS != "OK":
-            SMSFail0.append([name, tel, inTime])
-        # sendEmail
+            SMSFail0.append([name, tel, inTime, code])
+        sendEmail
         statusEmail = sendEmail(u'sssnowyue@163.com',
                                 email, smtpObj, name, code, inTime)
         print name.encode('utf-8'), email.encode('utf-8'), code.encode('utf-8'), inTime.encode('utf-8'), statusEmail
@@ -104,8 +107,8 @@ else:
     print "短信第一次发送失败重新发送中......"
     for info in SMSFail0:
         statusSMS = sendSms(info[0].encode(
-            'utf-8'), info[1].encode('utf-8'), info[2].encode('utf-8'))
-        print info[0].encode('utf-8'), info[1].encode('utf-8'), info[2].encode('utf-8'), statusSMS
+            'utf-8'), info[1].encode('utf-8'), info[2].encode('utf-8'), info[3].encode('utf-8'))
+        print info[0].encode('utf-8'), info[1].encode('utf-8'), info[2].encode('utf-8'), info[3].encode('utf-8'), statusSMS
         time.sleep(8)
         if statusSMS != "OK":
             SMSFail.append(
