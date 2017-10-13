@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import traceback
 import xlrd
 import uuid
 import json
@@ -9,6 +8,10 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 from smtplib import SMTP_SSL
+try:
+    import cPickle as pickle
+except ImportError:
+    import pickle
 
 
 def sendSms(name, tel, inTime, code):
@@ -30,7 +33,6 @@ def sendEmail(Sender, receiver, smtpObj, name, code, inTime):
         smtpObj.sendmail(Sender, receiver, msg.as_string())
         return "OK"
     except smtplib.SMTPException:
-        print traceback.print_exc()
         return "Fail"
 
 
@@ -45,7 +47,6 @@ def sendQEmail(Sender, receiver, smtpQ, name, code, inTime):
         smtpQ.sendmail(Sender, receiver, msg.as_string())
         return "OK"
     except:
-        print traceback.print_exc()
         return "Fail"
 
 
@@ -137,3 +138,14 @@ print "...................................."
 print "邮箱发送失败："
 for info in EmailFail:
     print info[0], info[1], info[2], info[3]
+
+with open(r'txt/sms.txt', 'wb') as f:
+    pickle.dump(SMSFail, f, True)
+with open(r'txt/mail.txt', 'wb') as f:
+    pickle.dump(EmailFail, f, True)
+
+del table
+del SMSFail0
+del EmailFail0
+del SMSFail
+del EmailFail
