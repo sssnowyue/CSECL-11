@@ -22,3 +22,16 @@ with open(r'txt/sms.txt', 'wb') as f:
     pickle.dump(info, f, True)
 with open(r'txt/mail.txt', 'wb') as f:
     pickle.dump(info, f, True)
+
+with open(r'txt/sms.txt', 'rb') as f:
+    sms = pickle.load(f)
+with open(r'txt/mail.txt', 'rb') as f:
+    mail = pickle.load(f)
+print "------------NOTICE------------"
+print "SMS to TXT:"
+print sms
+print "------------OVER--------------"
+print "------------NOTICE------------"
+print "Mail to TXT:"
+print mail
+print "------------OVER--------------"

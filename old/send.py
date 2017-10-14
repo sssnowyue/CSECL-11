@@ -90,7 +90,7 @@ for table in [table1, table2, table3]:
         print name.encode('utf-8'), tel.encode('utf-8'), code.encode('utf-8'), inTime.encode('utf-8'), statusSMS
         if statusSMS != "OK":
             SMSFail0.append([name, tel, inTime, code])
-        sendEmail
+        #sendEmail
         statusEmail = sendEmail(u'sssnowyue@163.com',
                                 email, smtpObj, name, code, inTime)
         print name.encode('utf-8'), email.encode('utf-8'), code.encode('utf-8'), inTime.encode('utf-8'), statusEmail
